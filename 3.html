@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Links Page</title>
+<link rel="stylesheet" href="index.css">
+</head>
+<body>
+<div class="container">
+    <h1>Your Social Links</h1>
+    <ul id="socialLinksList"></ul>
+</div>
+<script src="script.js"></script>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const linksParam = urlParams.get('links');
+    if (linksParam) {
+        const links = linksParam.split(',').map(link => decodeURIComponent(link));
+        const list = document.getElementById('socialLinksList');
+        links.forEach(link => {
+            const listItem = document.createElement('li');
+            const anchor = document.createElement('a');
+            anchor.href = link;
+            anchor.textContent = link;
+            anchor.target = "_blank";
+            listItem.appendChild(anchor);
+            list.appendChild(listItem);
+        });
+    }
+</script>
+</body>
+</html>
